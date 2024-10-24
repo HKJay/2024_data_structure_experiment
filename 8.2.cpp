@@ -39,7 +39,8 @@ public:
     int remove(const T& val);  //删除指定元素
     int search(const T& val);  //查找元素
     void reverse(); //原地逆置
-    int display(); //输出
+    void display(); //输出
+    int length(); //长度
 private:
     single<T>* head;
     int size;
@@ -86,6 +87,7 @@ void chain<T>::insert(const T& val, int index)
         single<T>* temp = new single<T>(val);
         temp->next = head;
         head = temp;
+        ++size;
         return;
     }
 
@@ -96,6 +98,7 @@ void chain<T>::insert(const T& val, int index)
     }
     single<T>* temp2 = temp->next;
     temp->next = new single<T>(val,temp2);
+    ++size;
 }
 
 template <class T>
@@ -105,6 +108,7 @@ void chain<T>::push_back(const T& val)
     if (head == NULL)
     {
         head = new single<T>(val);
+        ++size;
         return;
     }
     for (; temp->next != NULL; temp = temp->next){}
@@ -115,6 +119,8 @@ void chain<T>::push_back(const T& val)
 template <class T>
 int chain<T>::remove(const T& val)
 {
+    if (head == NULL)
+        return -1;
     if (head->data == val)
     {
         single<T>* temp = head;
@@ -167,20 +173,146 @@ void chain<T>::reverse()
 }
 
 template <class T>
-int chain<T>::display()
+void chain<T>::display()
 {
     iterator start = begin();
     int ans = 0;
     for(int i = 0 ; start != end(); ++start, ++i)
     {
-        ans += i ^ (*start);
+        cout << *start << ' ';
     }
-    return ans;
+    cout << endl;
 }
+
+template <class T>
+int chain<T>::length()
+{
+    return size;
+}
+
 
 template<class T>
 class my_hash_map //链表散列
 {
-    public:
-
+public:
+    my_hash_map(int D);
+    ~my_hash_map();
+    int insert(T& val);
+    int search(T& val);
+    int remove(T& val);
+    void print();
+private:
+    int D;
+    chain<T>** table;
 };
+
+template <class T>
+my_hash_map<T>::my_hash_map(int D)
+{
+    this->D = D;
+    table = new chain<T>*[D];
+    for (int i = 0; i < D; i++)
+    {
+        table[i] = NULL;
+    }
+}
+
+template <class T>
+my_hash_map<T>::~my_hash_map()
+{
+    for (int i = 0; i < D; i++)
+    {
+        if (table[i] != NULL)
+        {
+            delete table[i];
+        }
+    }
+    delete []table;
+}
+
+template <class T>
+int my_hash_map<T>::insert(T& val)
+{
+    if(table[val % D] == NULL)
+    {
+        table[val % D] = new chain<T>();
+    }
+    if(table[val % D]->search(val) == -1)
+    {
+        table[val % D]->push_back(val);
+        return 1;
+    }
+    return -1;
+}
+
+template <class T>
+int my_hash_map<T>::search(T& val)
+{
+    if(table[val % D] == NULL || table[val % D]->search(val) == -1)
+    {
+        return -1;
+    }
+    return table[val % D]->length();
+}
+
+template <class T>
+int my_hash_map<T>::remove(T& val)
+{
+    if (table[val % D] == NULL)
+        return -1;
+    return table[val % D]->remove(val);
+}
+
+template <class T>
+void my_hash_map<T>::print()
+{
+    for (int i = 0; i < D; i++)
+    {
+        if(table[i] != NULL)
+        {
+            table[i]->display();
+        }else
+        {
+            cout<<"NULL"<<endl;
+        }
+    }
+}
+
+int main()
+{
+    int m , D , opt , x;
+    int len;
+    cin>>D;
+    cin>>m;
+    my_hash_map<int> ans(D);
+    for (int i = 0; i < m; i++)
+    {
+        cin>>opt;
+        cin>>x;
+        switch (opt)
+        {
+        case 0:
+            if(ans.insert(x) == -1)
+                cout<<"Existed"<<endl;
+            break;
+        case 1:
+            len = ans.search(x);
+            if(len == -1)
+                cout<<"Not Found"<<endl;
+            else
+                cout<<len<<endl;
+            break;
+        case 2:
+            len = ans.remove(x);
+            if(len == -1)
+                cout<<"Delete Failed"<<endl;
+            else
+                cout<<len<<endl;
+            break;
+        default:
+            break;
+
+        }
+        //ans.print();
+    }
+}

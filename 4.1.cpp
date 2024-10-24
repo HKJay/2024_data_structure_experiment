@@ -87,6 +87,7 @@ void chain<T>::insert(const T& val, int index)
         single<T>* temp = new single<T>(val);
         temp->next = head;
         head = temp;
+        size++;
         return;
     }
 
@@ -97,6 +98,7 @@ void chain<T>::insert(const T& val, int index)
     }
     single<T>* temp2 = temp->next;
     temp->next = new single<T>(val,temp2);
+    size++;
 }
 
 template <class T>
@@ -106,6 +108,7 @@ void chain<T>::push_back(const T& val)
     if (head == NULL)
     {
         head = new single<T>(val);
+        size++;
         return;
     }
     for (; temp->next != NULL; temp = temp->next){}

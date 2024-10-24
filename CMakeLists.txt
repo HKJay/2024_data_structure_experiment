@@ -13,5 +13,6 @@ add_executable(TestWork 1.1.cpp
         6.cpp
         7.cpp
         8.1.cpp
+        "8.2(include).cpp"
         8.2.cpp
 )

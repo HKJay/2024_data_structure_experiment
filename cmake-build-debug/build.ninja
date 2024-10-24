@@ -49,14 +49,14 @@ cmake_ninja_workdir = F$:/Code/CWork/TestWork/cmake-build-debug/
 
 build cmake_object_order_depends_target_TestWork: phony || .
 
-build CMakeFiles/TestWork.dir/1.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/1.cpp || cmake_object_order_depends_target_TestWork
-  DEP_FILE = CMakeFiles\TestWork.dir\1.cpp.obj.d
+build CMakeFiles/TestWork.dir/1.1.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/1.1.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\1.1.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\TestWork.dir
   OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
 
-build CMakeFiles/TestWork.dir/2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/2.cpp || cmake_object_order_depends_target_TestWork
-  DEP_FILE = CMakeFiles\TestWork.dir\2.cpp.obj.d
+build CMakeFiles/TestWork.dir/1.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/1.2.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\1.2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles\TestWork.dir
   OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
@@ -109,6 +109,12 @@ build CMakeFiles/TestWork.dir/8.1.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debu
   OBJECT_DIR = CMakeFiles\TestWork.dir
   OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
 
+build CMakeFiles/TestWork.dir/8.2(include).cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/8.2(include).cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\8.2(include).cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
 build CMakeFiles/TestWork.dir/8.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/8.2.cpp || cmake_object_order_depends_target_TestWork
   DEP_FILE = CMakeFiles\TestWork.dir\8.2.cpp.obj.d
   FLAGS = -g -fdiagnostics-color=always
@@ -123,7 +129,7 @@ build CMakeFiles/TestWork.dir/8.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debu
 #############################################
 # Link the executable TestWork.exe
 
-build TestWork.exe: CXX_EXECUTABLE_LINKER__TestWork_Debug CMakeFiles/TestWork.dir/1.cpp.obj CMakeFiles/TestWork.dir/2.cpp.obj CMakeFiles/TestWork.dir/2.1.cpp.obj CMakeFiles/TestWork.dir/3.1.cpp.obj CMakeFiles/TestWork.dir/4.1.cpp.obj CMakeFiles/TestWork.dir/4.2.cpp.obj CMakeFiles/TestWork.dir/5.cpp.obj CMakeFiles/TestWork.dir/6.cpp.obj CMakeFiles/TestWork.dir/7.cpp.obj CMakeFiles/TestWork.dir/8.1.cpp.obj CMakeFiles/TestWork.dir/8.2.cpp.obj
+build TestWork.exe: CXX_EXECUTABLE_LINKER__TestWork_Debug CMakeFiles/TestWork.dir/1.1.cpp.obj CMakeFiles/TestWork.dir/1.2.cpp.obj CMakeFiles/TestWork.dir/2.1.cpp.obj CMakeFiles/TestWork.dir/3.1.cpp.obj CMakeFiles/TestWork.dir/4.1.cpp.obj CMakeFiles/TestWork.dir/4.2.cpp.obj CMakeFiles/TestWork.dir/5.cpp.obj CMakeFiles/TestWork.dir/6.cpp.obj CMakeFiles/TestWork.dir/7.cpp.obj CMakeFiles/TestWork.dir/8.1.cpp.obj CMakeFiles/TestWork.dir/8.2(include).cpp.obj CMakeFiles/TestWork.dir/8.2.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TestWork.dir

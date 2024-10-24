@@ -3,6 +3,12 @@
 using namespace std;
 
 template<class T>
+class chain;
+
+template<class T>
+class my_hash_map;
+
+template<class T>
 struct single
 {
     single<T>* next;
@@ -15,6 +21,7 @@ template<class T>
 class chain
 {
 public:
+    friend class my_hash_map<T>;
     chain(){head = NULL; size = 0;};
     chain(const chain<T>& list);
     ~chain();
@@ -37,15 +44,11 @@ public:
 
     void insert(const T& val , int index);  //指定位置插入
     void push_back(const T& val);   //末尾插入
-    void remove(const T& val);  //删除指定元素
+    int remove(const T& val);  //删除指定元素
     int search(const T& val);  //查找元素
     void reverse(); //原地逆置
-    int display(); //输出
-    void sort();//排序
-    void clear();   //清空
-    void print(); //打印
-    chain<T>& SortedMerge( chain<T>& other);
-
+    void display(); //输出
+    int length(); //长度
 private:
     single<T>* head;
     int size;
@@ -122,28 +125,30 @@ void chain<T>::push_back(const T& val)
 }
 
 template <class T>
-void chain<T>::remove(const T& val)
+int chain<T>::remove(const T& val)
 {
+    if (head == NULL)
+        return -1;
     if (head->data == val)
     {
         single<T>* temp = head;
         head = head->next;
         delete temp;
         --size;
-        return;
+        return size;
     }
     single<T>* temp = head;
     for(;temp->next != NULL && temp->next->data != val ; temp = temp->next){}
     if(temp->next == NULL)
     {
-        cout<< -1 <<endl;
-        return;
+        return -1;
     }
 
     single<T>* temp2 = temp->next;
     temp->next = temp->next->next;
     delete temp2;
     --size;
+    return size;
 }
 
 template <class T>
@@ -176,144 +181,188 @@ void chain<T>::reverse()
 }
 
 template <class T>
-int chain<T>::display()
+void chain<T>::display()
 {
     iterator start = begin();
     int ans = 0;
     for(int i = 0 ; start != end(); ++start, ++i)
     {
-        ans += i ^ (*start);
+        cout << *start << ' ';
     }
-    return ans;
+    cout << endl;
 }
 
 template <class T>
-void chain<T>::sort()
+int chain<T>::length()
 {
-    if (size == 0 || size == 1) return;
-    single<T>* temp = head;
-    T max = head->data;
-    for(; temp != NULL; temp = temp->next)
+    return size;
+}
+
+
+template<class T>
+class my_hash_map //链表散列
+{
+public:
+    my_hash_map(int D);
+    ~my_hash_map();
+    int insert(T& val);
+    int search(T& val);
+    int remove(T& val);
+    void print();
+private:
+    int D;
+    chain<T>** table;
+};
+
+template <class T>
+my_hash_map<T>::my_hash_map(int D)
+{
+    this->D = D;
+    table = new chain<T>*[D];
+    for (int i = 0; i < D; i++)
     {
-        if(max < temp->data) max = temp->data;
-    }
-    int j = 10;
-    int p = 1;
-    while(p <= max)
-    {
-        chain<T>* sorted = new chain<T>[19];
-        temp = head;
-        for(; temp != NULL; temp = temp->next)
-        {
-
-            const int& a = temp->data % j / p + 9;
-            sorted[a].push_back(temp->data);
-        }
-
-        single<T>* start = head;
-        for(int i = 0 ; i < 19 ; i++)
-        {
-            auto s = sorted[i].begin();
-            while(s != NULL)
-            {
-                start->data = *s;
-                start = start->next;
-                ++s;
-            }
-            sorted[i].clear();
-        }
-
-        j *= 10;
-        p *= 10;
-
+        table[i] = NULL;
     }
 }
 
 template <class T>
-void chain<T>::clear()
+my_hash_map<T>::~my_hash_map()
 {
-    single<T>* temp = head;
-    while(temp != NULL)
+    for (int i = 0; i < D; i++)
     {
-        single<T>* temp2 = temp->next;
+        if (table[i] != NULL)
+        {
+            delete table[i];
+        }
+    }
+    delete []table;
+}
+
+template <class T>
+int my_hash_map<T>::insert(T& val)
+{
+    if(table[val % D] == NULL)
+    {
+        table[val % D] = new chain<T>();
+    }
+    if(table[val % D]->search(val) == -1)
+    {
+        single<T>* temp = table[val % D]->head;
+        if (table[val % D]->head == NULL)
+        {
+            table[val % D]->head = new single<T>(val);
+            ++table[val % D]->size;
+            return 1;
+        }
+        for (; temp->next != NULL; temp = temp->next){}
+        temp->next = new single<T>(val,NULL);
+        ++table[val % D]->size;
+        return 1;
+    }
+    return -1;
+}
+
+template <class T>
+int my_hash_map<T>::search(T& val)
+{
+    int s = -1;
+    if(table[val % D] == NULL)
+        return -1;
+    single<T>* temp = table[val % D]->head;
+    for (int i = 0; temp != NULL; temp = temp->next , ++i)
+    {
+        if(temp->data == val)
+        {
+            s = i;
+            break;
+        }
+    }
+    if(s == -1)
+    {
+        return -1;
+    }
+    return table[val % D]->size;
+}
+
+template <class T>
+int my_hash_map<T>::remove(T& val)
+{
+    if (table[val % D] == NULL)
+        return -1;
+    if (table[val % D]->head == NULL)
+        return -1;
+    if (table[val % D]->head->data == val)
+    {
+        single<T>* temp = table[val % D]->head;
+        table[val % D]->head = table[val % D]->head->next;
         delete temp;
-        temp = temp2;
+        --table[val % D]->size;
+        return table[val % D]->size;
     }
-    head = NULL;
-    size = 0;
+    single<T>* temp = table[val % D]->head;
+    for(;temp->next != NULL && temp->next->data != val ; temp = temp->next){}
+    if(temp->next == NULL)
+    {
+        return -1;
+    }
+
+    single<T>* temp2 = temp->next;
+    temp->next = temp->next->next;
+    delete temp2;
+    --table[val % D]->size;
+    return table[val % D]->size;
 }
 
 template <class T>
-void chain<T>::print()
+void my_hash_map<T>::print()
 {
-    cout<<"chain print"<<endl;
-    single<T>* temp = head;
-    while(temp != NULL)
+    for (int i = 0; i < D; i++)
     {
-        cout<<temp->data<<" ";
-        temp = temp->next;
-    }
-    cout<<endl;
-}
-
-template <class T>
-chain<T>& chain<T>::SortedMerge( chain<T>& other)
-{
-    chain<T>* temp = new chain<T>();
-    chain<T>::iterator sa = begin();
-    chain<T>::iterator sb = other.begin();
-    while (sa != NULL && sb != NULL)
-    {
-        if(*sa > *sb)
+        if(table[i] != NULL)
         {
-            temp->push_back(*sb);
-            ++sb;
+            table[i]->display();
         }else
         {
-            temp->push_back(*sa);
-            ++sa;
+            cout<<"NULL"<<endl;
         }
     }
-    while (sb != NULL)
-    {
-        temp->push_back(*sb);
-        ++sb;
-    }
-    while (sa != NULL)
-    {
-        temp->push_back(*sa);
-        ++sa;
-    }
-    return *temp;
 }
-
-
 
 int main()
 {
-    int n ;
-    int q;
-    int num;
-    chain<int> ans1;
-    chain<int> ans2;
-    chain<int> ans3;
-    cin>>n;
-    cin>>q;
-    for(int i = 0 ; i < n ; i++)
+    int m , D , opt , x;
+    int len;
+    cin>>D;
+    cin>>m;
+    my_hash_map<int> ans(D);
+    for (int i = 0; i < m; i++)
     {
-        cin>>num;
-        ans1.push_back(num);
-    }
-    for(int i = 0 ; i < q ; i++)
-    {
-        cin>>num;
-        ans2.push_back(num);
-    }
+        cin>>opt;
+        cin>>x;
+        switch (opt)
+        {
+        case 0:
+            if(ans.insert(x) == -1)
+                cout<<"Existed"<<endl;
+            break;
+        case 1:
+            len = ans.search(x);
+            if(len == -1)
+                cout<<"Not Found"<<endl;
+            else
+                cout<<len<<endl;
+            break;
+        case 2:
+            len = ans.remove(x);
+            if(len == -1)
+                cout<<"Delete Failed"<<endl;
+            else
+                cout<<len<<endl;
+            break;
+        default:
+            break;
 
-    ans1.sort();
-    cout<<ans1.display()<<endl;
-    ans2.sort();
-    cout<<ans2.display()<<endl;
-    ans3 = ans1.SortedMerge(ans2);
-    cout<<ans3.display()<<endl;
+        }
+        //ans.print();
+    }
 }*/
