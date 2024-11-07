@@ -121,6 +121,36 @@ build CMakeFiles/TestWork.dir/8.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debu
   OBJECT_DIR = CMakeFiles\TestWork.dir
   OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
 
+build CMakeFiles/TestWork.dir/9.1.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/9.1.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\9.1.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
+build CMakeFiles/TestWork.dir/9.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/9.2.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\9.2.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
+build CMakeFiles/TestWork.dir/10.1.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/10.1.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\10.1.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
+build CMakeFiles/TestWork.dir/10.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/10.2.cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\10.2.cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
+build CMakeFiles/TestWork.dir/10.2(no_filecode).cpp.obj: CXX_COMPILER__TestWork_unscanned_Debug F$:/Code/CWork/TestWork/10.2(no$ filecode).cpp || cmake_object_order_depends_target_TestWork
+  DEP_FILE = CMakeFiles\TestWork.dir\10.2(no_filecode).cpp.obj.d
+  FLAGS = -g -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\TestWork.dir
+  OBJECT_FILE_DIR = CMakeFiles\TestWork.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target TestWork
@@ -129,7 +159,7 @@ build CMakeFiles/TestWork.dir/8.2.cpp.obj: CXX_COMPILER__TestWork_unscanned_Debu
 #############################################
 # Link the executable TestWork.exe
 
-build TestWork.exe: CXX_EXECUTABLE_LINKER__TestWork_Debug CMakeFiles/TestWork.dir/1.1.cpp.obj CMakeFiles/TestWork.dir/1.2.cpp.obj CMakeFiles/TestWork.dir/2.1.cpp.obj CMakeFiles/TestWork.dir/3.1.cpp.obj CMakeFiles/TestWork.dir/4.1.cpp.obj CMakeFiles/TestWork.dir/4.2.cpp.obj CMakeFiles/TestWork.dir/5.cpp.obj CMakeFiles/TestWork.dir/6.cpp.obj CMakeFiles/TestWork.dir/7.cpp.obj CMakeFiles/TestWork.dir/8.1.cpp.obj CMakeFiles/TestWork.dir/8.2(include).cpp.obj CMakeFiles/TestWork.dir/8.2.cpp.obj
+build TestWork.exe: CXX_EXECUTABLE_LINKER__TestWork_Debug CMakeFiles/TestWork.dir/1.1.cpp.obj CMakeFiles/TestWork.dir/1.2.cpp.obj CMakeFiles/TestWork.dir/2.1.cpp.obj CMakeFiles/TestWork.dir/3.1.cpp.obj CMakeFiles/TestWork.dir/4.1.cpp.obj CMakeFiles/TestWork.dir/4.2.cpp.obj CMakeFiles/TestWork.dir/5.cpp.obj CMakeFiles/TestWork.dir/6.cpp.obj CMakeFiles/TestWork.dir/7.cpp.obj CMakeFiles/TestWork.dir/8.1.cpp.obj CMakeFiles/TestWork.dir/8.2(include).cpp.obj CMakeFiles/TestWork.dir/8.2.cpp.obj CMakeFiles/TestWork.dir/9.1.cpp.obj CMakeFiles/TestWork.dir/9.2.cpp.obj CMakeFiles/TestWork.dir/10.1.cpp.obj CMakeFiles/TestWork.dir/10.2.cpp.obj CMakeFiles/TestWork.dir/10.2(no_filecode).cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\TestWork.dir

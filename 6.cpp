@@ -76,8 +76,8 @@ void stack<T>::pop()
 double figure(string str)
 {
     double sum = -1;
-    stack<double> num;
-    stack<int> op;
+    stack<double> num;  //数字栈
+    stack<int> op;      //操作栈
     double front;
     double back;
     int ope;

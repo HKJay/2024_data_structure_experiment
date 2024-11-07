@@ -8,9 +8,9 @@ class my_hash_map
 public:
     my_hash_map(int D);
     ~my_hash_map();
-    void insert(T& val);
-    int search(T& val);
-    void remove(T& val);
+    void insert(T& val);    //插入
+    int search(T& val);     //搜索
+    void remove(T& val);    //刪除
     void print();
 private:
     int D;
@@ -48,10 +48,10 @@ void my_hash_map<T>::insert(T& val)
 {
     int i = val % D;
     bool flag = true;
-    while(i !=  val % D || flag)
+    while(i !=  val % D || flag)    //循环遍历
     {
         flag = false;
-        if (table[i] == NULL)
+        if (table[i] == NULL)       //找到空位
         {
             table[i] = new T;
             *table[i] = val;
@@ -94,7 +94,7 @@ void my_hash_map<T>::remove(T& val)
     int pre;
     int mo = 0;
     bool flag = true;
-    while(i !=  val % D || flag)
+    while(i !=  val % D || flag)    //找到并删除
     {
         flag = false;
         if (table[i] == NULL)
@@ -114,9 +114,9 @@ void my_hash_map<T>::remove(T& val)
         return;
     }
     delete table[i];
-    pre = i;
+    pre = i; //空位
     j = (i + 1) % size;
-    while(j != i)
+    while(j != i)   //后面的元素前移
     {
         if (table[j] == NULL)
         {
