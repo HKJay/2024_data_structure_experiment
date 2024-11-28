@@ -113,7 +113,7 @@ void HuffmanTree::MakeHuffmanTree()
             heap.insert(node);
         }
     }
-    while(!heap.empty())
+    while(!heap.empty())   //取两个最小树
     {
         HuffmanNode *left = heap.getMin();
         heap.remove();

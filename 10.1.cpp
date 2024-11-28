@@ -46,7 +46,7 @@ void MinHeap<T>::create(int n)
     {
         cin >> data[i];
     }
-    int parent = size / 2;
+    int parent = size / 2;          //找到第一个有孩子的节点
     while (parent >= 1)             //初始化
     {
         int node = parent;
@@ -90,7 +90,7 @@ void MinHeap<T>::insert(T& value)
     data[size + 1] = value;
     size++;
     int parent = size;
-    while (parent > 1)
+    while (parent > 1)  //自底向上检查
     {
         parent = parent / 2;
         int leftChild = 2 * parent;
@@ -117,7 +117,7 @@ void MinHeap<T>::remove()
     data[1] = data[size];
     --size;
     int parent = 1;
-    while(parent * 2 <= size)
+    while(parent * 2 <= size)  //自顶向下检查
     {
         int leftChild = 2 * parent;
         int rightChild = leftChild + 1;

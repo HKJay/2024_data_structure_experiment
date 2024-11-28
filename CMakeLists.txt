@@ -20,4 +20,7 @@ add_executable(TestWork 1.1.cpp
         10.1.cpp
         10.2.cpp
         "10.2(no filecode).cpp"
+        11.cpp
+        11.t.cpp
+        12.cpp
 )

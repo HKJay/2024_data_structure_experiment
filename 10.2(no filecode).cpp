@@ -1,3 +1,4 @@
+/*
 #include <iostream>
 using namespace std;
 
@@ -262,3 +263,4 @@ int main()
     HuffmanTree tree(file);
     cout << tree.getHuffmanCodeLength() << endl;
 }
+*/
